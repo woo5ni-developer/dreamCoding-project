@@ -1,3 +1,4 @@
+//fetch the items from the Json file
 const loadItems = () => {
   return fetch('data/data.json')
   .then((response) => response.json())
@@ -11,11 +12,13 @@ const loadItems = () => {
 //   return json.items;
 // }
 
+//Update the list with the given items
 const displayItems = (items) => {
   const container = document.querySelector('.items');
   container.innerHTML = items.map((item) => createHTMLString(item)).join('');
 }
 
+//create HTML list itme from the given data item
 const createHTMLString = (item) => {
   return `
     <li class="item">
@@ -30,6 +33,7 @@ const onButtonClick = (event, items) => {
   const key = dataset.key;
   const value = dataset.value;
 
+  //필터링 정보가 없는 버튼
   if(key === null || value === null ){
     return;
   }
@@ -48,6 +52,8 @@ const setEventListeners = (items) => {
   })
 }
 
+
+//큰 틀을 잡고, 하나씩 함수를 만들어가보자!
 loadItems()
 .then(items => {
   displayItems(items);
